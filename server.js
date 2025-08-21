@@ -5,11 +5,13 @@ import Person from "./models/Person.js";
 import MenuItem from "./models/MenuItem.js";
 import personRoutes from "./routes/personRoutes.js";
 import menuItemRoutes from "./routes/menuItemRoutes.js"; 
+import dotenv from 'dotenv';
+dotenv.config(); 
 
 const app = express();
 
 app.use(bodyParser.json()); //req.body
-
+const PORT = process.env.PORT || 3000;
 // Example route
 app.get("/", (req, res) => {
   res.send("Welcome to Our hotel");
@@ -20,6 +22,6 @@ app.get("/", (req, res) => {
 app.use('/person', personRoutes);
 app.use('/menu',menuItemRoutes);
 // Start server
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Listening on port 3000");
 });
